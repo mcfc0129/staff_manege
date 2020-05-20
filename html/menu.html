@@ -1,0 +1,18 @@
+<!doctype html>
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html" charset="utf-8">
+</head>
+<body>
+  staffid {{.}}さんログイン中
+  <form method="post" enctype="multipart/form-data" action="/hub">
+    スタッフ管理</br>
+    追加:<input type="radio" name="staff" value="add">
+    表示:<input type="radio" name="staff" value="display">
+    変更:<input type="radio" name="staff" value="change">
+    削除:<input type="radio" name="staff" value="delete"></br></br>
+    <input type="submit" value="決定">
+  </form>
+  <a href="/logout">ログアウト</a>
+</body>
+</html>

@@ -1,0 +1,21 @@
+<!doctype html>
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html" charset="utf-8">
+</head>
+<body>
+  staffid {{.id}}さんログイン中
+  <div>以下の情報で間違いがないですか?</div>
+  <div>名前:{{.name}}</div>
+  <div>年齢:{{.age}}</div>
+  <div>性別:{{.sex}}</div>
+  <form method="post" enctype="multipart/form-data" action="/addStaff_Done">
+    <input type="submit" name="check" value="OK">
+    <input type="button" onclick="history.back()" value="戻る">
+    <input type="hidden" name="name" value="{{.name}}">
+    <input type="hidden" name="age" value="{{.age}}">
+    <input type="hidden" name="sex" value="{{.sex}}">
+    <input type="hidden" name="password" value="{{.password}}">
+  </form>
+</body>
+</html>
