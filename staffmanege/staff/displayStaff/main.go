@@ -6,7 +6,7 @@ import (
 	"fmt"
 	_ "github.com/lib/pq"
 	"strconv"
-  "shopping/session"
+  "session"
 )
 
 type Staff struct {

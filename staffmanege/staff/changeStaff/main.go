@@ -5,7 +5,7 @@ import (
 	"net/http"
 	_ "github.com/lib/pq"
 	"strconv"
-  "shopping/session"
+  "session"
 )
 
 type Staff struct {

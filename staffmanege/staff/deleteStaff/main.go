@@ -7,7 +7,7 @@ import (
 	_ "github.com/lib/pq"
 	"strconv"
   "encoding/hex"
-	"shopping/session"
+	"session"
 )
 
 func Upload(w http.ResponseWriter, r *http.Request) {

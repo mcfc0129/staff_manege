@@ -5,8 +5,8 @@ import (
 	"fmt"
 	"html/template"
 	"net/http"
-  "shopping/session"
-	"shopping/staff/addStaff"
+  "session"
+	"staff/addStaff"
 )
 
 func main() {
