@@ -4,13 +4,6 @@ import(
   "database/sql"
 )
 
-// type Staff struct {
-//   Id   int `json:"id"`
-//   Name string `json:"name"`
-//   Age  int `json:"age"`
-//   Sex  string `json:"sex"`
-// }
-
 var Db *sql.DB
 //detabaseに接続
 func init() {
@@ -30,8 +23,3 @@ func SelectStaff(name string,password string) (staff Staff,err error) {
   err = Db.QueryRow("select id,name,password from staff where name = $1 and password = $2",name, password).Scan(&staff.Id,&staff.Name,&staff.Password)
   return staff,err
 }
-
-// func (staff Staff) deleteStaff() (err error) {
-//   _, err = Db.Exec("delete from staff where id = $1",staff.Id)
-//   return
-// }

@@ -5,8 +5,9 @@ import (
 	"fmt"
 	"html/template"
 	"net/http"
-  "session"
-	"staff/addStaff"
+  "staffmanege/session"
+	"staffmanege/staff/addStaff"
+	"staffmanege/csv"
 )
 
 func main() {
@@ -16,6 +17,9 @@ func main() {
 	http.HandleFunc("/", login)
 	http.HandleFunc("/login", login_ok)
 	http.HandleFunc("/menu", menu)
+
+	http.HandleFunc("/SelectFile", SelectFile)
+	http.HandleFunc("/DecodingCsv",decodingcsv)
 
 	http.HandleFunc("/hub", hub)
 
@@ -27,14 +31,14 @@ func main() {
 }
 
 func login(w http.ResponseWriter, r *http.Request) {
-	t, _ := template.ParseFiles("shopping/index.html")
+	t, _ := template.ParseFiles("html/index.html")
 	t.Execute(w, nil)
 }
 
 func menu(w http.ResponseWriter, r *http.Request) {
 	id := session.Sessions(w, r, "session")
 	fmt.Println(id)
-	t, _ := template.ParseFiles("shopping/menu.html")
+	t, _ := template.ParseFiles("html/menu.html")
 	t.Execute(w, id)
 }
 
@@ -69,6 +73,9 @@ func hub(w http.ResponseWriter, r *http.Request) {
 	case "delete":
 		w.Header().Set("Location", "/deleteStaff")
 		w.WriteHeader(302)
+	case "csvfile":
+		w.Header().Set("Location", "/SelectFile")
+		w.WriteHeader(302)
 	default:
 		w.Header().Set("Location", "/")
 		w.WriteHeader(302)
@@ -77,4 +84,21 @@ func hub(w http.ResponseWriter, r *http.Request) {
 
 func logout(w http.ResponseWriter, r*http.Request) {
 	Logout(w,r)
+}
+
+func SelectFile(w http.ResponseWriter, r*http.Request) {
+	id := session.Sessions(w, r, "session")
+	t, _ := template.ParseFiles("html/csv.html")
+	t.Execute(w, id)
+}
+
+func decodingcsv(w http.ResponseWriter, r*http.Request) {
+	_, file,err := r.FormFile("csvfile")
+	if err != nil {
+		fmt.Println(err)
+	}
+	fmt.Println(file.Filename)
+	csv.DecodingCsv(file.Filename)
+
+	http.Redirect(w, r, "/menu", 302)
 }

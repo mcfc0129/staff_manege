@@ -2,10 +2,10 @@ package main
 
 import(
   "net/http"
-  "staff/displayStaff"
-  "staff/deleteStaff"
-  "staff/changeStaff"
-  "staff/addStaff"
+  "staffmanege/staff/displayStaff"
+  "staffmanege/staff/deleteStaff"
+  "staffmanege/staff/changeStaff"
+  "staffmanege/staff/addStaff"
 )
 
 func StaffAdd() {
